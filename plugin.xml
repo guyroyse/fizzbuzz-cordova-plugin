@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.guyroyse.fizzbuzz" version="0.1.0">
+  <name>FizzBuzz</name>
+  <description>Guy's FizzBuzz Plugin</description>
+  <js-module src="www/fizzbuzz.js" name="fizzbuzz">
+    <clobbers target="fizzbuzz" />
+  </js-module>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="FizzBuzz">
+        <param name="ios-package" value="FizzBuzzPlugin"/>
+      </feature>
+    </config-file>
+    <header-file src="src/ios/FizzBuzzPlugin.h" />
+    <source-file src="src/ios/FizzBuzzPlugin.m" />
+  </platform>
+</plugin>
