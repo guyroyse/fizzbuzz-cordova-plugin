@@ -4,7 +4,7 @@ import Foundation
 
   func fizzbuzz(command: CDVInvokedUrlCommand) {
 
-    var number = command.arguments[0] as Int
+    let number = command.arguments[0] as! Int
 
     var result: String
 
@@ -20,8 +20,8 @@ import Foundation
     }
 
     let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsString: result)
-    commandDelegate.sendPluginResult(pluginResult, callbackId:command.callbackId)
-    
+    commandDelegate!.sendPluginResult(pluginResult, callbackId:command.callbackId)
+
   }
 
 }
