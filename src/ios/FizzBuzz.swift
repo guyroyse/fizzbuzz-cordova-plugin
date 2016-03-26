@@ -4,22 +4,31 @@ import Foundation
 
   func fizzbuzz(command: CDVInvokedUrlCommand) {
 
-    let number = command.arguments[0] as! Int
+    let pluginResult: CDVPluginResult
 
-    var result: String
+    if command.arguments[0] is Int {
 
-    switch (number % 5, number % 3) {
-      case (0, 0):
-        result = "fizzbuzz"
-      case (0, _):
-        result = "fizz"
-      case (_, 0):
-        result = "buzz"
-      case (_, _):
-        result = "\(number)"
+      let number = command.arguments[0] as! Int
+
+      var result: String
+
+      switch (number % 3, number % 5) {
+        case (0, 0):
+          result = "fizzbuzz"
+        case (0, _):
+          result = "fizz"
+        case (_, 0):
+          result = "buzz"
+        case (_, _):
+          result = "\(number)"
+      }
+
+      pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsString: result)
+
+    } else {
+      pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR)
     }
 
-    let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsString: result)
     commandDelegate!.sendPluginResult(pluginResult, callbackId:command.callbackId)
 
   }
